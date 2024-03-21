@@ -1,6 +1,6 @@
 # Base →D\[erivatives\]
 
-Base →D\[erivatives\] is an art project that explores the concepts of composability and remix culture in the world of NFTs. It allows users to create unique derivative NFTs by combining their existing NFTs with various accessories, while tracking the provenance of each change made to the derivative.
+Base →D\[erivatives\] is an art project on Base, that explores the concepts of composability and remix culture in the world of NFTs. It allows users to create unique derivative NFTs by combining their existing NFTs with various accessories, while tracking the provenance of each change made to the derivative.
 
 ## Features
 
