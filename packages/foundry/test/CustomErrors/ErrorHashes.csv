@@ -1,0 +1,23 @@
+Error Signature,Hash
+"NotOwner()","30cd7471"
+
+"NonExistentToken()","9430a17e"
+
+"InvalidAccessory()","bde7b756"
+
+"AccessoryURLAlreadySet()","06c65c57"
+
+"InvalidTokenType()","a1e9dd9d"
+
+"NotEnoughGateToken()","cfc90c28"
+
+"WrongParamData()","bf35ed05"
+
+"NotEnoughPayment()","6d35ff8c"
+
+"AccessoriesMustUseSamePayment()","deb8e6c1"
+
+"AccessoryLimitReached()","16a5deca"
+
+"TotalSupplyExceeded()","fd59427a"
+
