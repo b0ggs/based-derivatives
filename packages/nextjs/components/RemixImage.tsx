@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { access } from "fs";
 import React, { useEffect, useState } from "react";
 import { Rnd } from "react-rnd";
 import { useRemix } from "~~/hooks/useRemix";
