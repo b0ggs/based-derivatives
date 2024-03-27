@@ -31,12 +31,12 @@ type AccessoryType = {
 };
 
 const accessoryMap: { [key: string]: AccessoryType } = {
-  tophat: {
-    name: "Top Hat",
-    width: 131,
-    height: 151,
-    src: "/tophat-trim.png",
-  },
+  // tophat: {
+  //   name: "Top Hat",
+  //   width: 131,
+  //   height: 151,
+  //   src: "/tophat-trim.png",
+  // },
   black: {
     name: "Top Hat - Black",
     width: 200,
@@ -272,7 +272,6 @@ const Remix: NextPage = () => {
                 disabled={!selectedNft}
               >
                 <option value="">Select Accessory</option>
-                <option value="tophat">Top Hat</option>
                 <option value="black">Top Hat - Black</option>
               </select>
             </div>
@@ -296,10 +295,17 @@ const Remix: NextPage = () => {
         </div>
 
         <div className="col-span-9 h-screen border-solid border-gray-400 border-2">
-          <RemixImage
-            backgroundUrl={mapToFallbackSrc(selectedNft?.cachedUrl || selectedNft?.originalUrl || "")}
-            accessoryUrl={selectedAccessory?.src}
-          />
+          {!selectedNft && (
+            <div className="flex flex-col items-center justify-center h-full">
+              Start by selecting an NFT to remix from the dropdown on the left.
+            </div>
+          )}
+          {selectedNft && (
+            <RemixImage
+              backgroundUrl={mapToFallbackSrc(selectedNft?.cachedUrl || selectedNft?.originalUrl || "")}
+              accessoryUrl={selectedAccessory?.src}
+            />
+          )}
         </div>
       </div>
     </div>

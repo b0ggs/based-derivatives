@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { access } from "fs";
 import React, { useEffect, useState } from "react";
 import { Rnd } from "react-rnd";
 import { useRemix } from "~~/hooks/useRemix";
@@ -29,7 +30,7 @@ function RemixImage({ backgroundUrl, accessoryUrl }: { backgroundUrl: string; ac
   return (
     <div className="relative">
       <div id="remix-container" className="w-fit">
-        <img src={backgroundUrl} alt="Background" />
+        <img src={backgroundUrl} alt="" />
         <Rnd
           style={style}
           size={{ width: aState.width, height: aState.height }}
@@ -49,7 +50,7 @@ function RemixImage({ backgroundUrl, accessoryUrl }: { backgroundUrl: string; ac
             });
           }}
         >
-          <img src={accessoryUrl} alt="Accessory" className="z-10 w-full h-full" />
+          {accessoryUrl && <img src={accessoryUrl} alt="" className="z-10 w-full h-full" />}
         </Rnd>
       </div>
     </div>
