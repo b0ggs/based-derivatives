@@ -13,6 +13,9 @@ type OwnedNft = {
   };
 };
 
+//
+// map alchemy data to internal format
+//
 export function mapOwnedNft(nft: OwnedNft) {
   const {
     contract: { address },
@@ -24,6 +27,7 @@ export function mapOwnedNft(nft: OwnedNft) {
 
   return {
     id: `${address}/${tokenId}`,
+    address,
     name,
     tokenId,
     tokenType,

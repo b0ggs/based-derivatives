@@ -1640,12 +1640,11 @@ __metadata:
     postcss: ~8.4.16
     prettier: ~2.8.4
     qrcode.react: ~3.1.0
-    re-resizable: ^6.9.11
     react: ~18.2.0
     react-copy-to-clipboard: ~5.1.0
     react-dom: ~18.2.0
-    react-draggable: ^4.4.6
     react-hot-toast: ~2.4.0
+    react-rnd: ^10.4.1
     tailwindcss: ~3.3.3
     type-fest: ~4.6.0
     typescript: ~5.1.6
@@ -5702,6 +5701,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-memoize@npm:^2.5.1":
+  version: 2.5.2
+  resolution: "fast-memoize@npm:2.5.2"
+  checksum: 79fa759719ba4eac7e8c22fb3b0eb3f18f4a31e218c00b1eb4a5b53c5781921133a6b84472d59ec5a6ea8f26ad57b43cd99a350c0547ccce51489bc9a5f0b28d
+  languageName: node
+  linkType: hard
+
 "fast-redact@npm:^3.0.0":
   version: 3.3.0
   resolution: "fast-redact@npm:3.3.0"
@@ -9464,13 +9470,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"re-resizable@npm:^6.9.11":
-  version: 6.9.11
-  resolution: "re-resizable@npm:6.9.11"
+"re-resizable@npm:6.9.6":
+  version: 6.9.6
+  resolution: "re-resizable@npm:6.9.6"
+  dependencies:
+    fast-memoize: ^2.5.1
   peerDependencies:
     react: ^16.13.1 || ^17.0.0 || ^18.0.0
     react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0
-  checksum: 04be62e2985caff8ff082664b9b66d7c49df383a9560e691f32f583cba75ce51077be8b718c5cda5a1fa07e701337102cbd9ff5b03a58541d9092f25753f47f7
+  checksum: ac87fd1058a1086be6330cd56a25de6b89b872eafad3cc2e6b821e39adcb50e79241c78fc369a4eed84931f64affc07cefb4fc3c118ccbe77f93add25ad82a1a
   languageName: node
   linkType: hard
 
@@ -9498,16 +9506,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-draggable@npm:^4.4.6":
-  version: 4.4.6
-  resolution: "react-draggable@npm:4.4.6"
+"react-draggable@npm:4.4.5":
+  version: 4.4.5
+  resolution: "react-draggable@npm:4.4.5"
   dependencies:
     clsx: ^1.1.1
     prop-types: ^15.8.1
   peerDependencies:
     react: ">= 16.3.0"
     react-dom: ">= 16.3.0"
-  checksum: 9b15aac59244873ac4561c5a2bead43a56e18d406e0a5f242bd4f9d151c074530c02b99387983104bf43417292f9cf8d063e554ed08d88792235e3fbc965f1b8
+  checksum: 21c3775db086e13020967627c20acd41d1ddbc7c7d7fca51491a5bbb54a0aa7e1730a4bc9af17141eb50a4954e547a5e25b2368f5f54b70db6f2686a897bacf2
   languageName: node
   linkType: hard
 
@@ -9571,6 +9579,20 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 01b0f65542a4c8803ee748b4e6cf2adad66d034e15fb72e8455773b0d7b178ec806b3194d74f412db7064670c45552cc666c04e9fb3b5d466dce5fb48e634825
+  languageName: node
+  linkType: hard
+
+"react-rnd@npm:^10.4.1":
+  version: 10.4.1
+  resolution: "react-rnd@npm:10.4.1"
+  dependencies:
+    re-resizable: 6.9.6
+    react-draggable: 4.4.5
+    tslib: 2.3.1
+  peerDependencies:
+    react: ">=16.3.0"
+    react-dom: ">=16.3.0"
+  checksum: 65741a091dab3c22093f27d89036a2989d09e1701c08bf7dc3c8322b14c92bf9a78e38a47e7cf2c4873dd5e90fae0666a9e5a9b75e843685dc49ea6392232cca
   languageName: node
   linkType: hard
 
@@ -10887,6 +10909,13 @@ __metadata:
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd
+  languageName: node
+  linkType: hard
+
+"tslib@npm:2.3.1":
+  version: 2.3.1
+  resolution: "tslib@npm:2.3.1"
+  checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
   languageName: node
   linkType: hard
 

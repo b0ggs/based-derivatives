@@ -1,65 +1,59 @@
-import React, { useState } from "react";
+/* eslint-disable @next/next/no-img-element */
+import React, { useEffect, useState } from "react";
+import { Rnd } from "react-rnd";
+import { useRemix } from "~~/hooks/useRemix";
 
-type Accessory = {
-  name: string;
-  width: number;
-  height: number;
-  src: string;
-};
+function RemixImage({ backgroundUrl, accessoryUrl }: { backgroundUrl: string; accessoryUrl: string | undefined }) {
+  const { setRemixState } = useRemix();
+  const [aState, setAState] = useState({
+    x: 0,
+    y: 0,
+    w: 200,
+    h: 200,
+    width: "200px",
+    height: "200px",
+  });
 
-interface RemixProps {
-  remixUrl: string | undefined;
-  accessory: Accessory | undefined;
-}
-
-const RemixImage: React.FC<RemixProps> = ({ remixUrl, accessory }) => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [size, setSize] = useState({ width: accessory?.width || 0, height: accessory?.height || 0 });
-
-  const handleDragStart = (e: React.DragEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    const offsetX = e.clientX - img.offsetLeft;
-    const offsetY = e.clientY - img.offsetTop;
-
-    const onDrag = (ev: MouseEvent) => {
-      setPosition({
-        x: ev.clientX - offsetX,
-        y: ev.clientY - offsetY,
-      });
-    };
-
-    const onDragEnd = () => {
-      document.removeEventListener("mousemove", onDrag);
-      document.removeEventListener("mouseup", onDragEnd);
-    };
-
-    document.addEventListener("mousemove", onDrag);
-    document.addEventListener("mouseup", onDragEnd);
+  const style = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    // border: "solid 1px #ddd",
+    // background: "#f0f0f0",
   };
 
-  const handleResize = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const newSize = {
-      width: e.clientX - position.x,
-      height: e.clientY - position.y,
-    };
-    setSize(newSize);
-  };
+  useEffect(() => {
+    setRemixState(prev => ({ ...prev, width: aState.w, height: aState.h }));
+  }, [aState.w, aState.h, setRemixState]);
 
   return (
-    <div className="relative w-full h-96" style={{ backgroundImage: `url(${remixUrl})`, backgroundSize: "cover" }}>
-      {accessory && (
-        <img
-          src={accessory.src}
-          alt="Accessory"
-          className="absolute cursor-move"
-          style={{ left: position.x, top: position.y, width: size.width, height: size.height }}
-          draggable
-          onDragStart={handleDragStart}
-        />
-      )}
-      <div className="absolute bottom-0 right-0 cursor-nw-resize" onMouseDown={handleResize}></div>
+    <div className="relative">
+      <div id="remix-container" className="w-fit">
+        <img src={backgroundUrl} alt="Background" />
+        <Rnd
+          style={style}
+          size={{ width: aState.width, height: aState.height }}
+          position={{ x: aState.x, y: aState.y }}
+          onDragStop={(e, d) => {
+            console.log("position:", { x: d.x, y: d.y });
+            setAState(prev => ({ ...prev, x: d.x, y: d.y }));
+            setRemixState(prev => ({ ...prev, x: d.x, y: d.y }));
+          }}
+          onResizeStop={(e, direction, ref, delta, position) => {
+            setAState({
+              w: Number(ref.style.width.replace("px", "")),
+              h: Number(ref.style.height.replace("px", "")),
+              width: ref.style.width,
+              height: ref.style.height,
+              ...position,
+            });
+          }}
+        >
+          <img src={accessoryUrl} alt="Accessory" className="z-10 w-full h-full" />
+        </Rnd>
+      </div>
     </div>
   );
-};
+}
 
 export default RemixImage;

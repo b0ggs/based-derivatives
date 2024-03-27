@@ -31,10 +31,13 @@ zkSyncTestnet = "https://testnet.era.zksync.dev"
 zkSync = "https://mainnet.era.zksync.io"
 scrollSepolia = "https://sepolia-rpc.scroll.io"
 scroll = "https://rpc.scroll.io"
+baseSepolia = "https://sepolia.base.org"
 
 [etherscan]
 polygonMumbai = { key = "${ETHERSCAN_API_KEY}" }
 goerli = { key = "${ETHERSCAN_API_KEY}" }
+baseGoerli = { key = "${ETHERSCAN_API_KEY}"}
+baseSepolia = { key = "${ETHERSCAN_API_KEY}" }
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
 

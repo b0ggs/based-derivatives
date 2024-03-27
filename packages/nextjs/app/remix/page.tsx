@@ -1,12 +1,16 @@
 "use client";
 
 import { ChangeEvent, useEffect, useState } from "react";
+import cx from "classnames";
 import type { NextPage } from "next";
-import { useAccount } from "wagmi";
-import AccessoryImage from "~~/components/AccessoryImage";
-import ImageWithFallback from "~~/components/ImageWithFallback";
-// import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import {
+  useAccount,
+  /*, useContractReads*/
+} from "wagmi";
 import NFTSelector from "~~/components/NftSelector";
+import RemixImage from "~~/components/RemixImage";
+import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { useRemix } from "~~/hooks/useRemix";
 import { getNFTsForOwner } from "~~/utils/alchemy";
 import elementToNft from "~~/utils/elementToNft";
 import { mapOwnedNft } from "~~/utils/mapOwnedNft";
@@ -15,13 +19,10 @@ const mapToFallbackSrc = (url: string) => {
   return url.replace("https://ipfs.io", "https://nftstorage.link");
 };
 
-// import CompositeImage from "~~/components/CompositeImage";
+const cidToUrl = (cid: string) => {
+  return `https://${cid}.ipfs.nftstorage.link/`;
+};
 
-// import { getMetadata } from "~~/utils/scaffold-eth/getMetadata";
-// export const metadata = getMetadata({
-//   title: "Remix NFTs",
-//   description: "Remix your NFTs with our accessories",
-// });
 type AccessoryType = {
   name: string;
   width: number;
@@ -36,52 +37,178 @@ const accessoryMap: { [key: string]: AccessoryType } = {
     height: 151,
     src: "/tophat-trim.png",
   },
+  black: {
+    name: "Top Hat - Black",
+    width: 200,
+    height: 200,
+    src: "https://i.imgur.com/ln8ND8J.png",
+  },
 };
+
+type RemixNftType = ReturnType<typeof mapOwnedNft>;
 
 const Remix: NextPage = () => {
   const { address: connectedAddress } = useAccount();
-  const [ownedNfts, setOwnedNfts] = useState<ReturnType<typeof mapOwnedNft>[]>([]);
-  // const [contractAddress, setContractAddress] = useState<string | undefined>();
-  const [remixUrl, setRemixUrl] = useState<string | undefined>();
-  //"https://ipfs.io/ipfs/bafybeifwjhl3vdm2vgmaeoxwesafffvnnlbq4ob6ewkj3eraec7qmoukaq/15.png",
-  //);
+  const { remixState } = useRemix();
+  const [selectedNft, setSelectedNft] = useState<RemixNftType | undefined>();
+  const [ownedNfts, setOwnedNfts] = useState<RemixNftType[]>([]);
+  const [isMinting, setIsMinting] = useState(false);
   const [selectedAccessory, setSelectedAccessory] = useState<AccessoryType | undefined>();
   const handleAccessoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
     console.info("Selected", accessoryMap[e.target.value]);
     setSelectedAccessory(accessoryMap[e.target.value]);
   };
-  // const {
-  //   writeAsync: remixNft,
-  //   isLoading,
-  //   isMining,
-  // } = useScaffoldContractWrite({
-  //   contractName: "BasedDerivatives",
-  //   functionName: "mintBasedDerivative",
-  //   args: [0n, ""],
-  //   blockConfirmations: 1,
-  //   onBlockConfirmation: txnReceipt => {
-  //     console.log("Transaction blockHash", txnReceipt.blockHash);
-  //   },
+  const {
+    writeAsync: remixNft,
+    isLoading,
+    isMining,
+  } = useScaffoldContractWrite({
+    contractName: "BasedDerivatives",
+    functionName: "mintBasedDerivative",
+    blockConfirmations: 1,
+    args: [
+      {
+        collection: "0x0",
+        tokenId: 0n,
+        ercType: 0,
+        imageURL: "https://example.com",
+        height: 0,
+        width: 0,
+      },
+      [
+        {
+          accessoryId: 0n,
+          imageURL: "https://accessory.com",
+          height: 0,
+          width: 0,
+          x: 0,
+          y: 0,
+          isVisible: true,
+        },
+      ],
+      "https://ipfs.link",
+    ],
+    onBlockConfirmation: txnReceipt => {
+      console.log("Minting complete");
+      console.log("Transaction blockHash", txnReceipt.blockHash);
+    },
+  });
+
+  const { data: accessoryCount } = useScaffoldContractRead({
+    contractName: "BasedDerivatives",
+    functionName: "accessoryCount",
+  });
+
+  const { data: accessoryData } = useScaffoldContractRead({
+    contractName: "BasedDerivatives",
+    functionName: "accessoryData",
+    args: [2n],
+  });
+
+  // const accessoryDataCalls = accessoryCount
+  //   ? Array.from(Array(accessoryCount).keys()).map(index => ({
+  //       addressOrName: deployedContracts[84532].BasedDerivatives.address,
+  //       contractInterface: deployedContracts[84532].BasedDerivatives.abi,
+  //       functionName: "accessoryData",
+  //       args: [BigInt(index)],
+  //     }))
+  //   : [];
+
+  // const { data: accessoryData } = useContractReads({
+  //   contracts: accessoryDataCalls,
   // });
+
+  if (accessoryData) {
+    console.log("Number of accessories:", accessoryCount);
+    console.log("AccessoryData", {
+      accessoryId: accessoryData[0],
+      totalSupply: accessoryData[1],
+      amountMinted: accessoryData[2],
+      amountPerTokenId: accessoryData[3],
+      traitType: accessoryData[4],
+      value: accessoryData[5],
+    });
+  }
+
+  // if (selectedNft) {
+  //   console.log("Serializing:", {
+  //     selectedNft: JSON.stringify(selectedNft, null, 2),
+  //     tokenId: selectedNft.tokenId,
+  //     bigTokenId: BigInt(Number(selectedNft.tokenId)),
+  //   });
+  // }
+  // console.log("REMIX STATE:", {
+  //   remixState,
+  // });
+
   const onMint = async (e: React.MouseEvent) => {
+    setIsMinting(true);
     e.preventDefault();
     const el = document.getElementById("remix-container");
     if (!el) {
       throw new Error("Could not find remix-container element.");
     }
 
-    const metadataUrl = await elementToNft(el, "NFT Remix");
+    const cid = await elementToNft(el);
 
-    if (metadataUrl) {
-      // remixNft({
-      //   args: [{
-      //   }, {
-      //   }],
-      // }).then(transactionId => {
-      // })
-      // fileForm1099DA({
-      //   args: [formId, metadataUrl.toString()],
-      // })
+    if (cid && selectedNft && selectedAccessory) {
+      const previewUrl = cidToUrl(cid);
+      // console.info("NFT CID:", { cid, previewUrl });
+      const imageUrl = selectedNft.cachedUrl || selectedNft.originalUrl;
+
+      if (!imageUrl) {
+        throw new Error("No image found for remix NFT");
+      }
+
+      const ercType = Number(selectedNft.tokenType.replace("ERC", ""));
+
+      if (Number.isNaN(ercType)) {
+        throw new Error("Could not convert ercType");
+      }
+
+      const ogImageData = {
+        collection: selectedNft.address,
+        tokenId: BigInt(Number(selectedNft.tokenId)),
+        ercType,
+        imageURL: imageUrl,
+        height: 512,
+        width: 768,
+      };
+      const accessoryMintData = {
+        accessoryId: 2n,
+        imageURL: selectedAccessory.src,
+        height: remixState.height,
+        width: remixState.width,
+        x: remixState.x,
+        y: remixState.y,
+        isVisible: true,
+      };
+
+      // console.log("MINT SERIALIZED:", {
+      //   selectedNft,
+      //   ogImageData,
+      //   accessoryMintData,
+      //   previewUrl,
+      // });
+
+      remixNft({
+        args: [ogImageData, [accessoryMintData], previewUrl],
+      })
+        .then(transactionId => {
+          if (transactionId) {
+            console.log("Mint TransactionId:", transactionId);
+            alert("Mint Complete...");
+          } else {
+            alert("Mint Failed or canceled ...");
+          }
+        })
+        .catch((err: Error) => {
+          console.error(err);
+          alert(`Mint Failed: [${err.name}] - ${err.message}`);
+        })
+        .finally(() => {
+          setIsMinting(false);
+        });
       //   .then(transactionId => {
       //     if (transactionId) {
       //       setMintingComplete(true);
@@ -98,8 +225,11 @@ const Remix: NextPage = () => {
   };
 
   const handleSelectedNft = (nft: ReturnType<typeof mapOwnedNft>) => {
-    setRemixUrl(nft.cachedUrl || nft.originalUrl || undefined);
+    console.info("Selected NFT:", nft);
+    setSelectedNft(nft);
   };
+
+  const enableMinting = selectedNft && selectedAccessory && !isMinting && !isLoading && !isMining;
 
   //
   // On connected wallet, get all of the owned NFTs
@@ -133,88 +263,47 @@ const Remix: NextPage = () => {
               <input className="w-full p-2 mb-2 rounded bg-gray-800" placeholder="Search by Address" />
               <button className="w-full bg-blue-600 p-2 rounded">Search</button>
             </div>
-            {/* <button className="mb-2 w-full bg-gray-800 p-2 rounded">☰ Owned NFTs</button> */}
-            {/* <div className="bg-gray-800 p-2 rounded"> */}
             <NFTSelector nfts={ownedNfts} onSelect={handleSelectedNft} />
             <div className="mb-4">
-              {/* <label htmlFor="accessory-dropdown" className="block mb-2">
-              Accessory
-            </label> */}
               <select
                 id="accessory-dropdown"
-                className="w-full dark:bg-gray-800 p-2 rounded mt-4"
+                className={cx("w-full p-2 rounded mt-4", { "cursor-not-allowed": !selectedNft })}
                 onChange={handleAccessoryChange}
+                disabled={!selectedNft}
               >
                 <option value="">Select Accessory</option>
                 <option value="tophat">Top Hat</option>
-                <option value="tophat">Other Top Hat</option>
+                <option value="black">Top Hat - Black</option>
               </select>
             </div>
             <div>
-              <button className="w-full bg-green-600 p-2 rounded" onClick={onMint}>
+              <button
+                className={cx("w-full p-2 rounded", {
+                  "animate-pulse-fast": isMinting,
+                  btn: !enableMinting,
+                  "btn btn-primary": enableMinting,
+                  "cursor-not-allowed": !enableMinting,
+                })}
+                onClick={onMint}
+                disabled={!enableMinting}
+              >
                 Mint
               </button>
-              <p className="mt-2">Cost: 0.01 ETH</p>
+              {/* <p className="mt-2">Cost: 0.01 ETH</p> */}
             </div>
             {/* </div> */}
           </div>
         </div>
 
         <div className="col-span-9 h-screen border-solid border-gray-400 border-2">
-          <div
-            id="remix-container"
-            className="relative w-full h-full"
-            style={{ backgroundImage: `url(${mapToFallbackSrc(remixUrl || "")})`, backgroundSize: "cover" }}
-          >
-            {selectedAccessory && <AccessoryImage {...selectedAccessory} />}
-          </div>
-          {/* <div className="col-span-6">
-          <div className="w-full h-96 bg-gray-800 rounded flex items-center justify-center text-gray-400 overflow-clip">
-            <div>
-              {!remixUrl && <span>NFT to REMIX shows up here</span>}
-              {remixUrl && (
-                <ImageWithFallback
-                  src={remixUrl}
-                  alt="remix"
-                  width="0"
-                  height="0"
-                  sizes="100vw"
-                  className="w-full h-auto relative"
-                  fallbackSrc={mapToFallbackSrc(remixUrl)}
-                />
-              )}
-              {selectedAccessory && <AccessoryImage {...selectedAccessory} />}
-            </div>
-          </div>*/}
-        </div>
-
-        <div className="col-span-3 hidden">
-          <div className="mb-4">
-            {/* <label htmlFor="accessory-dropdown" className="block mb-2">
-              Accessory
-            </label> */}
-            <select
-              id="accessory-dropdown"
-              className="w-full dark:bg-gray-800 p-2 rounded"
-              onChange={handleAccessoryChange}
-            >
-              <option value="">Select Accessory</option>
-              <option value="tophat">Top Hat</option>
-              <option value="tophat">Other Top Hat</option>
-            </select>
-          </div>
-          <div>
-            <button className="w-full bg-green-600 p-2 rounded" onClick={onMint}>
-              Mint
-            </button>
-            <p className="mt-2">Cost: 0.01 ETH</p>
-          </div>
+          <RemixImage
+            backgroundUrl={mapToFallbackSrc(selectedNft?.cachedUrl || selectedNft?.originalUrl || "")}
+            accessoryUrl={selectedAccessory?.src}
+          />
         </div>
       </div>
     </div>
   );
 };
-
-//             {remixUrl && <CompositeImage imageUrl={remixUrl} accessoryUrl={accessoryUrl} alt="selected accessory" />}
 
 export default Remix;

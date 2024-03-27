@@ -1,7 +1,7 @@
+import { storeNftImage } from "./nftStorage";
 import * as htmlToImage from "html-to-image";
-import storeFormNFT from "~~/utils/nftStorage";
 
-const elementToNft = (el: HTMLElement, description: string) => {
+const elementToNft = (el: HTMLElement) => {
   return htmlToImage
     .toBlob(el, { quality: 1.0 })
     .then(async blob => {
@@ -9,10 +9,7 @@ const elementToNft = (el: HTMLElement, description: string) => {
         throw new Error("form blob is undefined");
       }
       console.log("Writing form NFT to nft.storage");
-      const metadata = await storeFormNFT(blob, description);
-      // console.log("nft.storage metadata", JSON.stringify(metadata, null, 2));
-      console.log("Filing URI", metadata.url);
-      return metadata.url;
+      return await storeNftImage(blob);
     })
     .catch((err: Error) => {
       console.error("oops, something went wrong!", err);

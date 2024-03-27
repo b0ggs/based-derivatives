@@ -7,1213 +7,1521 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     SVGBuilder: {
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      address: "0xDc1b57A1A2698ab90521b716e9C63C00B4d9584d",
       abi: [
         {
+          type: "function",
+          name: "generateSVG",
           inputs: [
             {
-              internalType: "uint256",
               name: "tokenId",
               type: "uint256",
+              internalType: "uint256",
             },
             {
-              components: [
-                {
-                  components: [
-                    {
-                      internalType: "address",
-                      name: "collection",
-                      type: "address",
-                    },
-                    {
-                      internalType: "uint256",
-                      name: "tokenId",
-                      type: "uint256",
-                    },
-                    {
-                      internalType: "uint16",
-                      name: "ercType",
-                      type: "uint16",
-                    },
-                    {
-                      internalType: "string",
-                      name: "imageURL",
-                      type: "string",
-                    },
-                    {
-                      internalType: "uint16",
-                      name: "height",
-                      type: "uint16",
-                    },
-                    {
-                      internalType: "uint16",
-                      name: "width",
-                      type: "uint16",
-                    },
-                  ],
-                  internalType: "struct SVGBuilder.ogImageData",
-                  name: "ogImage",
-                  type: "tuple",
-                },
-                {
-                  components: [
-                    {
-                      internalType: "uint256",
-                      name: "accessoryId",
-                      type: "uint256",
-                    },
-                    {
-                      internalType: "string",
-                      name: "imageURL",
-                      type: "string",
-                    },
-                    {
-                      internalType: "uint16",
-                      name: "height",
-                      type: "uint16",
-                    },
-                    {
-                      internalType: "uint16",
-                      name: "width",
-                      type: "uint16",
-                    },
-                    {
-                      internalType: "uint16",
-                      name: "x",
-                      type: "uint16",
-                    },
-                    {
-                      internalType: "uint16",
-                      name: "y",
-                      type: "uint16",
-                    },
-                  ],
-                  internalType: "struct SVGBuilder.Accessory[]",
-                  name: "accessories",
-                  type: "tuple[]",
-                },
-              ],
-              internalType: "struct SVGBuilder.TokenData",
               name: "_tokenData",
               type: "tuple",
-            },
-            {
+              internalType: "struct SVGBuilder.TokenData",
               components: [
                 {
-                  internalType: "uint256",
-                  name: "accessoryId",
-                  type: "uint256",
+                  name: "ogImage",
+                  type: "tuple",
+                  internalType: "struct SVGBuilder.ogImageData",
+                  components: [
+                    {
+                      name: "collection",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "tokenId",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "ercType",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                    {
+                      name: "imageURL",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "height",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                    {
+                      name: "width",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
-                  name: "totalSupply",
-                  type: "uint256",
+                  name: "accessories",
+                  type: "tuple[]",
+                  internalType: "struct SVGBuilder.Accessory[]",
+                  components: [
+                    {
+                      name: "accessoryId",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "imageURL",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "height",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                    {
+                      name: "width",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                    {
+                      name: "x",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                    {
+                      name: "y",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                    {
+                      name: "isVisible",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                  ],
                 },
                 {
-                  internalType: "uint256",
-                  name: "amountMinted",
-                  type: "uint256",
-                },
-                {
-                  internalType: "string",
-                  name: "traitType",
+                  name: "previewImageURL",
                   type: "string",
-                },
-                {
                   internalType: "string",
-                  name: "value",
-                  type: "string",
                 },
               ],
-              internalType: "struct SVGBuilder.AccessoryData[]",
-              name: "accessoriesData",
+            },
+            {
+              name: "accessoriesCallData",
               type: "tuple[]",
+              internalType: "struct SVGBuilder.AccessoryCallData[]",
+              components: [
+                {
+                  name: "accessoryId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "totalSupply",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "amountMinted",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "amountPerTokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "traitType",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "value",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+            {
+              name: "isOwner",
+              type: "bool",
+              internalType: "bool",
             },
           ],
-          name: "generateSVG",
           outputs: [
             {
-              internalType: "string",
               name: "",
               type: "string",
+              internalType: "string",
             },
           ],
           stateMutability: "pure",
-          type: "function",
         },
       ],
       inheritedFunctions: {},
     },
     BasedDerivatives: {
-      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      address: "0x744f1532597e943D0604e56cee2A9D68d543B2e3",
       abi: [
         {
+          type: "constructor",
           inputs: [
             {
-              internalType: "string",
               name: "name",
               type: "string",
+              internalType: "string",
             },
             {
-              internalType: "string",
               name: "symbol",
               type: "string",
+              internalType: "string",
             },
             {
-              internalType: "address payable",
               name: "_beneficiary",
               type: "address",
+              internalType: "address payable",
             },
           ],
           stateMutability: "nonpayable",
-          type: "constructor",
         },
         {
-          inputs: [],
-          name: "AccessoriesMustUseSamePayment",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "AccessoryURLAlreadySet",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "ApprovalCallerNotOwnerNorApproved",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "ApprovalQueryForNonexistentToken",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "BalanceQueryForZeroAddress",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "InvalidAccessory",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "InvalidTokenType",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "MintERC2309QuantityExceedsLimit",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "MintToZeroAddress",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "MintZeroQuantity",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "NonExistentToken",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "NotEnoughGateToken",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "NotEnoughPayment",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "NotOwner",
-          type: "error",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "owner",
-              type: "address",
-            },
-          ],
-          name: "OwnableInvalidOwner",
-          type: "error",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "account",
-              type: "address",
-            },
-          ],
-          name: "OwnableUnauthorizedAccount",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "OwnerQueryForNonexistentToken",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "OwnershipNotInitializedForExtraData",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "TransferCallerNotOwnerNorApproved",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "TransferFromIncorrectOwner",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "TransferToNonERC721ReceiverImplementer",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "TransferToZeroAddress",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "URIQueryForNonexistentToken",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "WrongParamData",
-          type: "error",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: true,
-              internalType: "address",
-              name: "owner",
-              type: "address",
-            },
-            {
-              indexed: true,
-              internalType: "address",
-              name: "approved",
-              type: "address",
-            },
-            {
-              indexed: true,
-              internalType: "uint256",
-              name: "tokenId",
-              type: "uint256",
-            },
-          ],
-          name: "Approval",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: true,
-              internalType: "address",
-              name: "owner",
-              type: "address",
-            },
-            {
-              indexed: true,
-              internalType: "address",
-              name: "operator",
-              type: "address",
-            },
-            {
-              indexed: false,
-              internalType: "bool",
-              name: "approved",
-              type: "bool",
-            },
-          ],
-          name: "ApprovalForAll",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: true,
-              internalType: "uint256",
-              name: "fromTokenId",
-              type: "uint256",
-            },
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "toTokenId",
-              type: "uint256",
-            },
-            {
-              indexed: true,
-              internalType: "address",
-              name: "from",
-              type: "address",
-            },
-            {
-              indexed: true,
-              internalType: "address",
-              name: "to",
-              type: "address",
-            },
-          ],
-          name: "ConsecutiveTransfer",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "_tokenId",
-              type: "uint256",
-            },
-          ],
-          name: "MetadataUpdate",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: true,
-              internalType: "address",
-              name: "previousOwner",
-              type: "address",
-            },
-            {
-              indexed: true,
-              internalType: "address",
-              name: "newOwner",
-              type: "address",
-            },
-          ],
-          name: "OwnershipTransferred",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: true,
-              internalType: "address",
-              name: "from",
-              type: "address",
-            },
-            {
-              indexed: true,
-              internalType: "address",
-              name: "to",
-              type: "address",
-            },
-            {
-              indexed: true,
-              internalType: "uint256",
-              name: "tokenId",
-              type: "uint256",
-            },
-          ],
-          name: "Transfer",
-          type: "event",
-        },
-        {
-          inputs: [],
+          type: "function",
           name: "accessoryCount",
+          inputs: [],
           outputs: [
             {
-              internalType: "uint256",
               name: "",
               type: "uint256",
+              internalType: "uint256",
             },
           ],
           stateMutability: "view",
-          type: "function",
         },
         {
+          type: "function",
+          name: "accessoryData",
           inputs: [
             {
-              internalType: "uint256",
               name: "",
               type: "uint256",
+              internalType: "uint256",
             },
           ],
-          name: "accessoryData",
           outputs: [
             {
-              internalType: "uint256",
               name: "accessoryId",
               type: "uint256",
+              internalType: "uint256",
             },
             {
-              internalType: "uint256",
               name: "totalSupply",
               type: "uint256",
+              internalType: "uint256",
             },
             {
-              internalType: "uint256",
               name: "amountMinted",
               type: "uint256",
+              internalType: "uint256",
             },
             {
-              internalType: "string",
+              name: "amountPerTokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
               name: "traitType",
               type: "string",
+              internalType: "string",
             },
             {
-              internalType: "string",
               name: "value",
               type: "string",
+              internalType: "string",
             },
           ],
           stateMutability: "view",
-          type: "function",
         },
         {
+          type: "function",
+          name: "accessoryImageURL",
           inputs: [
             {
-              internalType: "uint256",
               name: "",
               type: "uint256",
+              internalType: "uint256",
             },
           ],
-          name: "accessoryImageURL",
           outputs: [
             {
-              internalType: "string",
               name: "",
               type: "string",
+              internalType: "string",
             },
           ],
           stateMutability: "view",
-          type: "function",
         },
         {
+          type: "function",
+          name: "accessoryMintingParams",
           inputs: [
             {
-              internalType: "uint256",
               name: "",
               type: "uint256",
+              internalType: "uint256",
             },
           ],
-          name: "accessoryMintingParams",
           outputs: [
             {
-              internalType: "address",
               name: "accessoryNFTCollection",
               type: "address",
+              internalType: "address",
             },
             {
-              internalType: "uint256",
               name: "tokenId",
               type: "uint256",
+              internalType: "uint256",
             },
             {
-              internalType: "uint256",
               name: "mintingFee",
               type: "uint256",
+              internalType: "uint256",
             },
             {
-              internalType: "uint256",
               name: "gateAmount",
               type: "uint256",
+              internalType: "uint256",
             },
             {
-              internalType: "address",
               name: "feeAddress",
               type: "address",
+              internalType: "address",
             },
             {
-              internalType: "address",
               name: "gateAddress",
               type: "address",
+              internalType: "address",
             },
             {
-              internalType: "uint16",
               name: "ercGateType",
               type: "uint16",
+              internalType: "uint16",
             },
             {
-              internalType: "uint16",
               name: "royalty",
               type: "uint16",
+              internalType: "uint16",
             },
           ],
           stateMutability: "view",
-          type: "function",
         },
         {
-          inputs: [
-            {
-              internalType: "string",
-              name: "imageURL",
-              type: "string",
-            },
-            {
-              components: [
-                {
-                  internalType: "uint256",
-                  name: "accessoryId",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "totalSupply",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "amountMinted",
-                  type: "uint256",
-                },
-                {
-                  internalType: "string",
-                  name: "traitType",
-                  type: "string",
-                },
-                {
-                  internalType: "string",
-                  name: "value",
-                  type: "string",
-                },
-              ],
-              internalType: "struct SVGBuilder.AccessoryData",
-              name: "accessoryDataInput",
-              type: "tuple",
-            },
-            {
-              components: [
-                {
-                  internalType: "address",
-                  name: "accessoryNFTCollection",
-                  type: "address",
-                },
-                {
-                  internalType: "uint256",
-                  name: "tokenId",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "mintingFee",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "gateAmount",
-                  type: "uint256",
-                },
-                {
-                  internalType: "address",
-                  name: "feeAddress",
-                  type: "address",
-                },
-                {
-                  internalType: "address",
-                  name: "gateAddress",
-                  type: "address",
-                },
-                {
-                  internalType: "uint16",
-                  name: "ercGateType",
-                  type: "uint16",
-                },
-                {
-                  internalType: "uint16",
-                  name: "royalty",
-                  type: "uint16",
-                },
-              ],
-              internalType: "struct SVGBuilder.AccessoryMintingParams",
-              name: "mintingParamsInput",
-              type: "tuple",
-            },
-          ],
-          name: "addAccessory",
-          outputs: [],
-          stateMutability: "nonpayable",
           type: "function",
-        },
-        {
+          name: "addAccessoriesToDerivative",
           inputs: [
             {
-              internalType: "address",
-              name: "to",
-              type: "address",
-            },
-            {
-              internalType: "uint256",
               name: "tokenId",
               type: "uint256",
-            },
-          ],
-          name: "approve",
-          outputs: [],
-          stateMutability: "payable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "owner",
-              type: "address",
-            },
-          ],
-          name: "balanceOf",
-          outputs: [
-            {
               internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "deleteAccessory",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "tokenId",
-              type: "uint256",
             },
             {
-              components: [
-                {
-                  internalType: "uint256",
-                  name: "accessoryId",
-                  type: "uint256",
-                },
-                {
-                  internalType: "string",
-                  name: "imageURL",
-                  type: "string",
-                },
-                {
-                  internalType: "uint16",
-                  name: "height",
-                  type: "uint16",
-                },
-                {
-                  internalType: "uint16",
-                  name: "width",
-                  type: "uint16",
-                },
-                {
-                  internalType: "uint16",
-                  name: "x",
-                  type: "uint16",
-                },
-                {
-                  internalType: "uint16",
-                  name: "y",
-                  type: "uint16",
-                },
-              ],
-              internalType: "struct SVGBuilder.Accessory[]",
-              name: "accessories",
-              type: "tuple[]",
-            },
-          ],
-          name: "editBasedDerivative",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "tokenId",
-              type: "uint256",
-            },
-          ],
-          name: "getApproved",
-          outputs: [
-            {
-              internalType: "address",
-              name: "",
-              type: "address",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              components: [
-                {
-                  internalType: "uint256",
-                  name: "accessoryId",
-                  type: "uint256",
-                },
-                {
-                  internalType: "string",
-                  name: "imageURL",
-                  type: "string",
-                },
-                {
-                  internalType: "uint16",
-                  name: "height",
-                  type: "uint16",
-                },
-                {
-                  internalType: "uint16",
-                  name: "width",
-                  type: "uint16",
-                },
-                {
-                  internalType: "uint16",
-                  name: "x",
-                  type: "uint16",
-                },
-                {
-                  internalType: "uint16",
-                  name: "y",
-                  type: "uint16",
-                },
-              ],
-              internalType: "struct SVGBuilder.Accessory[]",
-              name: "accessories",
-              type: "tuple[]",
-            },
-          ],
-          name: "getTotalFeeForAccessories",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-            {
-              internalType: "address",
-              name: "",
-              type: "address",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "owner",
-              type: "address",
-            },
-            {
-              internalType: "address",
-              name: "operator",
-              type: "address",
-            },
-          ],
-          name: "isApprovedForAll",
-          outputs: [
-            {
-              internalType: "bool",
-              name: "",
-              type: "bool",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              components: [
-                {
-                  internalType: "address",
-                  name: "collection",
-                  type: "address",
-                },
-                {
-                  internalType: "uint256",
-                  name: "tokenId",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint16",
-                  name: "ercType",
-                  type: "uint16",
-                },
-                {
-                  internalType: "string",
-                  name: "imageURL",
-                  type: "string",
-                },
-                {
-                  internalType: "uint16",
-                  name: "height",
-                  type: "uint16",
-                },
-                {
-                  internalType: "uint16",
-                  name: "width",
-                  type: "uint16",
-                },
-              ],
-              internalType: "struct SVGBuilder.ogImageData",
-              name: "_ogImage",
-              type: "tuple",
-            },
-            {
-              components: [
-                {
-                  internalType: "uint256",
-                  name: "accessoryId",
-                  type: "uint256",
-                },
-                {
-                  internalType: "string",
-                  name: "imageURL",
-                  type: "string",
-                },
-                {
-                  internalType: "uint16",
-                  name: "height",
-                  type: "uint16",
-                },
-                {
-                  internalType: "uint16",
-                  name: "width",
-                  type: "uint16",
-                },
-                {
-                  internalType: "uint16",
-                  name: "x",
-                  type: "uint16",
-                },
-                {
-                  internalType: "uint16",
-                  name: "y",
-                  type: "uint16",
-                },
-              ],
-              internalType: "struct SVGBuilder.Accessory[]",
               name: "_accessories",
               type: "tuple[]",
-            },
-          ],
-          name: "mintBasedDerivative",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "name",
-          outputs: [
-            {
-              internalType: "string",
-              name: "",
-              type: "string",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "owner",
-          outputs: [
-            {
-              internalType: "address",
-              name: "",
-              type: "address",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "tokenId",
-              type: "uint256",
-            },
-          ],
-          name: "ownerOf",
-          outputs: [
-            {
-              internalType: "address",
-              name: "",
-              type: "address",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "renounceOwnership",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "from",
-              type: "address",
-            },
-            {
-              internalType: "address",
-              name: "to",
-              type: "address",
-            },
-            {
-              internalType: "uint256",
-              name: "tokenId",
-              type: "uint256",
-            },
-          ],
-          name: "safeTransferFrom",
-          outputs: [],
-          stateMutability: "payable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "from",
-              type: "address",
-            },
-            {
-              internalType: "address",
-              name: "to",
-              type: "address",
-            },
-            {
-              internalType: "uint256",
-              name: "tokenId",
-              type: "uint256",
-            },
-            {
-              internalType: "bytes",
-              name: "_data",
-              type: "bytes",
-            },
-          ],
-          name: "safeTransferFrom",
-          outputs: [],
-          stateMutability: "payable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "operator",
-              type: "address",
-            },
-            {
-              internalType: "bool",
-              name: "approved",
-              type: "bool",
-            },
-          ],
-          name: "setApprovalForAll",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "bytes4",
-              name: "interfaceId",
-              type: "bytes4",
-            },
-          ],
-          name: "supportsInterface",
-          outputs: [
-            {
-              internalType: "bool",
-              name: "",
-              type: "bool",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "symbol",
-          outputs: [
-            {
-              internalType: "string",
-              name: "",
-              type: "string",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          name: "tokenData",
-          outputs: [
-            {
+              internalType: "struct SVGBuilder.Accessory[]",
               components: [
                 {
-                  internalType: "address",
-                  name: "collection",
-                  type: "address",
-                },
-                {
-                  internalType: "uint256",
-                  name: "tokenId",
+                  name: "accessoryId",
                   type: "uint256",
+                  internalType: "uint256",
                 },
                 {
-                  internalType: "uint16",
-                  name: "ercType",
-                  type: "uint16",
-                },
-                {
-                  internalType: "string",
                   name: "imageURL",
                   type: "string",
+                  internalType: "string",
                 },
                 {
-                  internalType: "uint16",
                   name: "height",
                   type: "uint16",
+                  internalType: "uint16",
                 },
                 {
-                  internalType: "uint16",
                   name: "width",
                   type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "x",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "y",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "isVisible",
+                  type: "bool",
+                  internalType: "bool",
                 },
               ],
-              internalType: "struct SVGBuilder.ogImageData",
-              name: "ogImage",
-              type: "tuple",
             },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
             {
-              internalType: "uint256",
-              name: "tokenId",
-              type: "uint256",
-            },
-          ],
-          name: "tokenURI",
-          outputs: [
-            {
-              internalType: "string",
-              name: "",
+              name: "_previewImageURL",
               type: "string",
+              internalType: "string",
             },
           ],
-          stateMutability: "view",
-          type: "function",
+          outputs: [],
+          stateMutability: "nonpayable",
         },
         {
-          inputs: [],
-          name: "totalSupply",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
           type: "function",
-        },
-        {
+          name: "addAccessory",
           inputs: [
             {
-              internalType: "address",
-              name: "from",
-              type: "address",
+              name: "imageURL",
+              type: "string",
+              internalType: "string",
             },
             {
-              internalType: "address",
+              name: "accessoryDataInput",
+              type: "tuple",
+              internalType: "struct SVGBuilder.AccessoryCallData",
+              components: [
+                {
+                  name: "accessoryId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "totalSupply",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "amountMinted",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "amountPerTokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "traitType",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "value",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+            {
+              name: "mintingParamsInput",
+              type: "tuple",
+              internalType: "struct SVGBuilder.AccessoryMintingParams",
+              components: [
+                {
+                  name: "accessoryNFTCollection",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "tokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "mintingFee",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "gateAmount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "feeAddress",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "gateAddress",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "ercGateType",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "royalty",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "approve",
+          inputs: [
+            {
               name: "to",
               type: "address",
+              internalType: "address",
             },
             {
-              internalType: "uint256",
               name: "tokenId",
               type: "uint256",
+              internalType: "uint256",
             },
           ],
-          name: "transferFrom",
           outputs: [],
           stateMutability: "payable",
-          type: "function",
         },
         {
+          type: "function",
+          name: "balanceOf",
           inputs: [
             {
+              name: "owner",
+              type: "address",
               internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "deleteAndAddAccessory",
+          inputs: [
+            {
+              name: "accessoryId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "imageURL",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "accessoryDataInput",
+              type: "tuple",
+              internalType: "struct SVGBuilder.AccessoryCallData",
+              components: [
+                {
+                  name: "accessoryId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "totalSupply",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "amountMinted",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "amountPerTokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "traitType",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "value",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+            {
+              name: "mintingParamsInput",
+              type: "tuple",
+              internalType: "struct SVGBuilder.AccessoryMintingParams",
+              components: [
+                {
+                  name: "accessoryNFTCollection",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "tokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "mintingFee",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "gateAmount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "feeAddress",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "gateAddress",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "ercGateType",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "royalty",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "editBasedDerivative",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "accessories",
+              type: "tuple[]",
+              internalType: "struct SVGBuilder.Accessory[]",
+              components: [
+                {
+                  name: "accessoryId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "imageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "height",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "width",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "x",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "y",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "isVisible",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
+            {
+              name: "_previewImageURL",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "editOGImage",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_ogImage",
+              type: "tuple",
+              internalType: "struct SVGBuilder.ogImageData",
+              components: [
+                {
+                  name: "collection",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "tokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "ercType",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "imageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "height",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "width",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+            {
+              name: "_previewImageURL",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "getApproved",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getTotalFeeForAccessories",
+          inputs: [
+            {
+              name: "accessories",
+              type: "tuple[]",
+              internalType: "struct SVGBuilder.Accessory[]",
+              components: [
+                {
+                  name: "accessoryId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "imageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "height",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "width",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "x",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "y",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "isVisible",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "isApprovedForAll",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "mintBasedDerivative",
+          inputs: [
+            {
+              name: "_ogImage",
+              type: "tuple",
+              internalType: "struct SVGBuilder.ogImageData",
+              components: [
+                {
+                  name: "collection",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "tokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "ercType",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "imageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "height",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "width",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+            {
+              name: "_accessories",
+              type: "tuple[]",
+              internalType: "struct SVGBuilder.Accessory[]",
+              components: [
+                {
+                  name: "accessoryId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "imageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "height",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "width",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "x",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "y",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "isVisible",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
+            {
+              name: "_previewImageURL",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "name",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "owner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "ownerOf",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "renounceOwnership",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "safeTransferFrom",
+          inputs: [
+            {
+              name: "from",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "to",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "safeTransferFrom",
+          inputs: [
+            {
+              name: "from",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "to",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_data",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "setApprovalForAll",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "approved",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "supportsInterface",
+          inputs: [
+            {
+              name: "interfaceId",
+              type: "bytes4",
+              internalType: "bytes4",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "symbol",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "toggleAccessoryOnOff",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_accessoryId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_isVisible",
+              type: "bool",
+              internalType: "bool",
+            },
+            {
+              name: "_previewImageURL",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "tokenData",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "ogImage",
+              type: "tuple",
+              internalType: "struct SVGBuilder.ogImageData",
+              components: [
+                {
+                  name: "collection",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "tokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "ercType",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "imageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "height",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "width",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+            {
+              name: "previewImageURL",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "tokenURI",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "totalSupply",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "transferFrom",
+          inputs: [
+            {
+              name: "from",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "to",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "transferOwnership",
+          inputs: [
+            {
               name: "newOwner",
               type: "address",
+              internalType: "address",
             },
           ],
-          name: "transferOwnership",
           outputs: [],
           stateMutability: "nonpayable",
-          type: "function",
         },
         {
+          type: "function",
+          name: "updatePayableAddy",
           inputs: [
             {
-              internalType: "address payable",
               name: "_beneficiary",
               type: "address",
+              internalType: "address payable",
             },
           ],
-          name: "updatePayableAddy",
           outputs: [],
           stateMutability: "nonpayable",
-          type: "function",
+        },
+        {
+          type: "event",
+          name: "Approval",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "approved",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "ApprovalForAll",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "operator",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "approved",
+              type: "bool",
+              indexed: false,
+              internalType: "bool",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "ConsecutiveTransfer",
+          inputs: [
+            {
+              name: "fromTokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256",
+            },
+            {
+              name: "toTokenId",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "from",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "to",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "MetadataUpdate",
+          inputs: [
+            {
+              name: "_tokenId",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OwnershipTransferred",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Transfer",
+          inputs: [
+            {
+              name: "from",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "to",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "AccessoriesMustUseSamePayment",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "AccessoryLimitReached",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "AccessoryURLAlreadySet",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "ApprovalCallerNotOwnerNorApproved",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "ApprovalQueryForNonexistentToken",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "BalanceQueryForZeroAddress",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidAccessory",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidTokenType",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "MintERC2309QuantityExceedsLimit",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "MintToZeroAddress",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "MintZeroQuantity",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NonExistentToken",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NotEnoughGateToken",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NotEnoughPayment",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NotOwner",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "OwnableInvalidOwner",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+        },
+        {
+          type: "error",
+          name: "OwnableUnauthorizedAccount",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+        },
+        {
+          type: "error",
+          name: "OwnerQueryForNonexistentToken",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "OwnershipNotInitializedForExtraData",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "TotalSupplyExceeded",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "TransferCallerNotOwnerNorApproved",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "TransferFromIncorrectOwner",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "TransferToNonERC721ReceiverImplementer",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "TransferToZeroAddress",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "URIQueryForNonexistentToken",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "WrongParamData",
+          inputs: [],
         },
       ],
       inheritedFunctions: {
@@ -1230,12 +1538,1548 @@ const deployedContracts = {
         tokenURI: "contracts/1099/ERC721A.sol",
         totalSupply: "contracts/1099/ERC721A.sol",
         transferFrom: "contracts/1099/ERC721A.sol",
-        owner:
-          "lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol",
-        renounceOwnership:
-          "lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol",
-        transferOwnership:
-          "lib/openzeppelin-contracts-upgradeable/lib/openzeppelin-contracts/contracts/access/Ownable.sol",
+        owner: "contracts/1099/Ownable.sol",
+        renounceOwnership: "contracts/1099/Ownable.sol",
+        transferOwnership: "contracts/1099/Ownable.sol",
+      },
+    },
+  },
+  84532: {
+    SVGBuilder: {
+      address: "0xDc1b57A1A2698ab90521b716e9C63C00B4d9584d",
+      abi: [
+        {
+          type: "function",
+          name: "generateSVG",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_tokenData",
+              type: "tuple",
+              internalType: "struct SVGBuilder.TokenData",
+              components: [
+                {
+                  name: "ogImage",
+                  type: "tuple",
+                  internalType: "struct SVGBuilder.ogImageData",
+                  components: [
+                    {
+                      name: "collection",
+                      type: "address",
+                      internalType: "address",
+                    },
+                    {
+                      name: "tokenId",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "ercType",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                    {
+                      name: "imageURL",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "height",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                    {
+                      name: "width",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                  ],
+                },
+                {
+                  name: "accessories",
+                  type: "tuple[]",
+                  internalType: "struct SVGBuilder.Accessory[]",
+                  components: [
+                    {
+                      name: "accessoryId",
+                      type: "uint256",
+                      internalType: "uint256",
+                    },
+                    {
+                      name: "imageURL",
+                      type: "string",
+                      internalType: "string",
+                    },
+                    {
+                      name: "height",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                    {
+                      name: "width",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                    {
+                      name: "x",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                    {
+                      name: "y",
+                      type: "uint16",
+                      internalType: "uint16",
+                    },
+                    {
+                      name: "isVisible",
+                      type: "bool",
+                      internalType: "bool",
+                    },
+                  ],
+                },
+                {
+                  name: "previewImageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+            {
+              name: "accessoriesCallData",
+              type: "tuple[]",
+              internalType: "struct SVGBuilder.AccessoryCallData[]",
+              components: [
+                {
+                  name: "accessoryId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "totalSupply",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "amountMinted",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "amountPerTokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "traitType",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "value",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+            {
+              name: "isOwner",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "pure",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    BasedDerivatives: {
+      address: "0x744f1532597e943D0604e56cee2A9D68d543B2e3",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "name",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "symbol",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "_beneficiary",
+              type: "address",
+              internalType: "address payable",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "accessoryCount",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "accessoryData",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "accessoryId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "totalSupply",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "amountMinted",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "amountPerTokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "traitType",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "value",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "accessoryImageURL",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "accessoryMintingParams",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "accessoryNFTCollection",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "mintingFee",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "gateAmount",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "feeAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "gateAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "ercGateType",
+              type: "uint16",
+              internalType: "uint16",
+            },
+            {
+              name: "royalty",
+              type: "uint16",
+              internalType: "uint16",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "addAccessoriesToDerivative",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_accessories",
+              type: "tuple[]",
+              internalType: "struct SVGBuilder.Accessory[]",
+              components: [
+                {
+                  name: "accessoryId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "imageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "height",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "width",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "x",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "y",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "isVisible",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
+            {
+              name: "_previewImageURL",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "addAccessory",
+          inputs: [
+            {
+              name: "imageURL",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "accessoryDataInput",
+              type: "tuple",
+              internalType: "struct SVGBuilder.AccessoryCallData",
+              components: [
+                {
+                  name: "accessoryId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "totalSupply",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "amountMinted",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "amountPerTokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "traitType",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "value",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+            {
+              name: "mintingParamsInput",
+              type: "tuple",
+              internalType: "struct SVGBuilder.AccessoryMintingParams",
+              components: [
+                {
+                  name: "accessoryNFTCollection",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "tokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "mintingFee",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "gateAmount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "feeAddress",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "gateAddress",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "ercGateType",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "royalty",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "approve",
+          inputs: [
+            {
+              name: "to",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "balanceOf",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "deleteAndAddAccessory",
+          inputs: [
+            {
+              name: "accessoryId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "imageURL",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "accessoryDataInput",
+              type: "tuple",
+              internalType: "struct SVGBuilder.AccessoryCallData",
+              components: [
+                {
+                  name: "accessoryId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "totalSupply",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "amountMinted",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "amountPerTokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "traitType",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "value",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+            {
+              name: "mintingParamsInput",
+              type: "tuple",
+              internalType: "struct SVGBuilder.AccessoryMintingParams",
+              components: [
+                {
+                  name: "accessoryNFTCollection",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "tokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "mintingFee",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "gateAmount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "feeAddress",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "gateAddress",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "ercGateType",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "royalty",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "editBasedDerivative",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "accessories",
+              type: "tuple[]",
+              internalType: "struct SVGBuilder.Accessory[]",
+              components: [
+                {
+                  name: "accessoryId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "imageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "height",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "width",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "x",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "y",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "isVisible",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
+            {
+              name: "_previewImageURL",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "editOGImage",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_ogImage",
+              type: "tuple",
+              internalType: "struct SVGBuilder.ogImageData",
+              components: [
+                {
+                  name: "collection",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "tokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "ercType",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "imageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "height",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "width",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+            {
+              name: "_previewImageURL",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "getApproved",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getTotalFeeForAccessories",
+          inputs: [
+            {
+              name: "accessories",
+              type: "tuple[]",
+              internalType: "struct SVGBuilder.Accessory[]",
+              components: [
+                {
+                  name: "accessoryId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "imageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "height",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "width",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "x",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "y",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "isVisible",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "isApprovedForAll",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "mintBasedDerivative",
+          inputs: [
+            {
+              name: "_ogImage",
+              type: "tuple",
+              internalType: "struct SVGBuilder.ogImageData",
+              components: [
+                {
+                  name: "collection",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "tokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "ercType",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "imageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "height",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "width",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+            {
+              name: "_accessories",
+              type: "tuple[]",
+              internalType: "struct SVGBuilder.Accessory[]",
+              components: [
+                {
+                  name: "accessoryId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "imageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "height",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "width",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "x",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "y",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "isVisible",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
+            {
+              name: "_previewImageURL",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "name",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "owner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "ownerOf",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "renounceOwnership",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "safeTransferFrom",
+          inputs: [
+            {
+              name: "from",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "to",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "safeTransferFrom",
+          inputs: [
+            {
+              name: "from",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "to",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_data",
+              type: "bytes",
+              internalType: "bytes",
+            },
+          ],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "setApprovalForAll",
+          inputs: [
+            {
+              name: "operator",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "approved",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "supportsInterface",
+          inputs: [
+            {
+              name: "interfaceId",
+              type: "bytes4",
+              internalType: "bytes4",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "symbol",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "toggleAccessoryOnOff",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_accessoryId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "_isVisible",
+              type: "bool",
+              internalType: "bool",
+            },
+            {
+              name: "_previewImageURL",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "tokenData",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "ogImage",
+              type: "tuple",
+              internalType: "struct SVGBuilder.ogImageData",
+              components: [
+                {
+                  name: "collection",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "tokenId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "ercType",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "imageURL",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "height",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+                {
+                  name: "width",
+                  type: "uint16",
+                  internalType: "uint16",
+                },
+              ],
+            },
+            {
+              name: "previewImageURL",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "tokenURI",
+          inputs: [
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "totalSupply",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "transferFrom",
+          inputs: [
+            {
+              name: "from",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "to",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "transferOwnership",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "updatePayableAddy",
+          inputs: [
+            {
+              name: "_beneficiary",
+              type: "address",
+              internalType: "address payable",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "Approval",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "approved",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "ApprovalForAll",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "operator",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "approved",
+              type: "bool",
+              indexed: false,
+              internalType: "bool",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "ConsecutiveTransfer",
+          inputs: [
+            {
+              name: "fromTokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256",
+            },
+            {
+              name: "toTokenId",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+            {
+              name: "from",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "to",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "MetadataUpdate",
+          inputs: [
+            {
+              name: "_tokenId",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OwnershipTransferred",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Transfer",
+          inputs: [
+            {
+              name: "from",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "to",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "tokenId",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "AccessoriesMustUseSamePayment",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "AccessoryLimitReached",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "AccessoryURLAlreadySet",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "ApprovalCallerNotOwnerNorApproved",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "ApprovalQueryForNonexistentToken",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "BalanceQueryForZeroAddress",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidAccessory",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidTokenType",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "MintERC2309QuantityExceedsLimit",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "MintToZeroAddress",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "MintZeroQuantity",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NonExistentToken",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NotEnoughGateToken",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NotEnoughPayment",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NotOwner",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "OwnableInvalidOwner",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+        },
+        {
+          type: "error",
+          name: "OwnableUnauthorizedAccount",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+        },
+        {
+          type: "error",
+          name: "OwnerQueryForNonexistentToken",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "OwnershipNotInitializedForExtraData",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "TotalSupplyExceeded",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "TransferCallerNotOwnerNorApproved",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "TransferFromIncorrectOwner",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "TransferToNonERC721ReceiverImplementer",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "TransferToZeroAddress",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "URIQueryForNonexistentToken",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "WrongParamData",
+          inputs: [],
+        },
+      ],
+      inheritedFunctions: {
+        approve: "contracts/1099/ERC721A.sol",
+        balanceOf: "contracts/1099/ERC721A.sol",
+        getApproved: "contracts/1099/ERC721A.sol",
+        isApprovedForAll: "contracts/1099/ERC721A.sol",
+        name: "contracts/1099/ERC721A.sol",
+        ownerOf: "contracts/1099/ERC721A.sol",
+        safeTransferFrom: "contracts/1099/ERC721A.sol",
+        setApprovalForAll: "contracts/1099/ERC721A.sol",
+        supportsInterface: "contracts/1099/ERC721A.sol",
+        symbol: "contracts/1099/ERC721A.sol",
+        tokenURI: "contracts/1099/ERC721A.sol",
+        totalSupply: "contracts/1099/ERC721A.sol",
+        transferFrom: "contracts/1099/ERC721A.sol",
+        owner: "contracts/1099/Ownable.sol",
+        renounceOwnership: "contracts/1099/Ownable.sol",
+        transferOwnership: "contracts/1099/Ownable.sol",
       },
     },
   },
