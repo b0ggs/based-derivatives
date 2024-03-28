@@ -9,7 +9,7 @@ import { BasedDerivatives } from "../contracts/BasedDerivitives/BasedDerivatives
 // forge script script/Bootstrap.s.sol:Bootstrap --rpc-url $RPC_URL --broadcast --verify -vvvv 2>&1 | tee bootstrap.out
 // forge script script/Bootstrap.s.sol:Bootstrap --broadcast --verify -vvvv 2>&1 | tee bootstrap.out
 contract Bootstrap is Script {
-    BasedDerivatives based = BasedDerivatives(0x744f1532597e943D0604e56cee2A9D68d543B2e3);
+    BasedDerivatives based = BasedDerivatives(0x79F6B9212cA0ef4Cfc1401Db052af8b1603Bf677);
 
     using SVGBuilder for SVGBuilder.Accessory;
     using SVGBuilder for SVGBuilder.ogImageData;
@@ -33,7 +33,7 @@ contract Bootstrap is Script {
 
         // Create calldata struct
         data = SVGBuilder.AccessoryCallData({
-            accessoryId: 1,         // tokenId in original contract
+            accessoryId: 0,         // tokenId in original contract
             totalSupply: 1000,      // total amount of this accessory that can be minted
             amountMinted: 0,        // number of accessories minted
             amountPerTokenId: 1,    // amount of this accessory that a based derivative can have in it
@@ -43,7 +43,7 @@ contract Bootstrap is Script {
 
         mintingParams = SVGBuilder.AccessoryMintingParams({
             accessoryNFTCollection: address(0xf45cD2B137Eb3f88670CeB9efb8D5F8Ecaf72C4E),
-            tokenId: 1,                 // same as accessoryId
+            tokenId: 0,                 // same as accessoryId
             mintingFee: _mintingFee,    // minting fee in ERC20 currency
             gateAmount: _gateAmount,    // amount wallet must have in gateAddress balance
             feeAddress: _feeAddress,    // ERC20 for minting

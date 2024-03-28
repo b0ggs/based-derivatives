@@ -1546,7 +1546,7 @@ const deployedContracts = {
   },
   84532: {
     SVGBuilder: {
-      address: "0xDc1b57A1A2698ab90521b716e9C63C00B4d9584d",
+      address: "0xf9bbc05D7f9d95CE0C65680DE7C34D9191B90f9d",
       abi: [
         {
           type: "function",
@@ -1704,7 +1704,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     BasedDerivatives: {
-      address: "0x744f1532597e943D0604e56cee2A9D68d543B2e3",
+      address: "0x79F6B9212cA0ef4Cfc1401Db052af8b1603Bf677",
       abi: [
         {
           type: "constructor",
