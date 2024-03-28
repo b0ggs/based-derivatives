@@ -48,6 +48,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/remix",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
