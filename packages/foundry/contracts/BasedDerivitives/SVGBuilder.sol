@@ -100,7 +100,7 @@ library SVGBuilder {
             // Start the SVG tag with the canvas size set to the dimensions of the ogImage
             svg = string(
                 abi.encodePacked(
-                    '<svg preserveAspectRatio="xMinYMin meet" fill="none" height="',
+                    '<svg fill="none" height="',
                     heightStr,
                     'px" width="',
                     widthStr,
@@ -125,7 +125,7 @@ library SVGBuilder {
                 svg = string(
                     abi.encodePacked(
                         svg,
-                        '<image height="',
+                        '<image preserveAspectRatio="none" height="',
                         _toString(accessory.height),
                         'px" width="',
                         _toString(accessory.width),
@@ -158,9 +158,9 @@ library SVGBuilder {
                 '", "description": "A Based Derivative", "attributes": ',
                 attributes,
                 ', "animation_url": "',
-                animation, 
+                animation,
                 '", "image": "',
-                _tokenData.previewImageURL, 
+                _tokenData.previewImageURL,
                 '"}'
             )
         );
