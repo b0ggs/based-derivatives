@@ -18,7 +18,7 @@ contract DeployScript is ScaffoldETHDeploy {
         address deployer = vm.addr(deployerPrivateKey);
         vm.startBroadcast(deployerPrivateKey);
         BasedDerivatives basedDerivitives = new BasedDerivatives(
-            "Based Derivitives",
+            "Based Derivatives",
             "BASED",
             payable(deployer)
         );
