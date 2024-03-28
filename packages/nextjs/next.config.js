@@ -46,17 +46,23 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "*",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/remix",
-        permanent: false,
-      },
-    ];
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: "/",
+  //       destination: "/remix",
+  //       permanent: false,
+  //     },
+  //   ];
+  // },
 };
 
 module.exports = nextConfig;
