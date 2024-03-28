@@ -11,16 +11,16 @@ const imageUrl = `${baseUrl}/thumbnail.jpg`;
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Based Derivatives",
-    template: "%s | Based Derivatives",
+    default: "Base→D[erivatives]",
+    template: "%s | Base→D[erivatives]",
   },
-  description: "Based Derivatives",
+  description: "Base→D[erivatives]",
   openGraph: {
     title: {
-      default: "Based Derivatives",
-      template: "%s | Based Derivatives",
+      default: "Base→D[erivatives]",
+      template: "%s | Base→D[erivatives]",
     },
-    description: "Based Derivatives",
+    description: "Base→D[erivatives]",
     images: [
       {
         url: imageUrl,
@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: [imageUrl],
     title: {
-      default: "Based Derivatives",
-      template: "%s | Based Derivatives",
+      default: "Base→D[erivatives]",
+      template: "%s | Base→D[erivatives]",
     },
-    description: "Based Derivatives",
+    description: "Base→D[erivatives]",
   },
   icons: {
     icon: [{ url: "/favicon.png", sizes: "32x32", type: "image/png" }],
