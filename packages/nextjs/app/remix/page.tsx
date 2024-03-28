@@ -9,7 +9,8 @@ import {
 } from "wagmi";
 import NFTSelector from "~~/components/NftSelector";
 import RemixImage from "~~/components/RemixImage";
-import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { Address } from "~~/components/scaffold-eth";
+import { useDeployedContractInfo, useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import { useRemix } from "~~/hooks/useRemix";
 import { getNFTsForOwner } from "~~/utils/alchemy";
 import elementToNft from "~~/utils/elementToNft";
@@ -54,6 +55,8 @@ const Remix: NextPage = () => {
   const [ownedNfts, setOwnedNfts] = useState<RemixNftType[]>([]);
   const [isMinting, setIsMinting] = useState(false);
   const [selectedAccessory, setSelectedAccessory] = useState<AccessoryType | undefined>();
+  const { data: deployedContractData /*, isLoading: deployedContractLoading */ } =
+    useDeployedContractInfo("BasedDerivatives");
   const handleAccessoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
     console.info("Selected", accessoryMap[e.target.value]);
     setSelectedAccessory(accessoryMap[e.target.value]);
@@ -102,7 +105,7 @@ const Remix: NextPage = () => {
   const { data: accessoryData } = useScaffoldContractRead({
     contractName: "BasedDerivatives",
     functionName: "accessoryData",
-    args: [2n],
+    args: [0n],
   });
 
   // const accessoryDataCalls = accessoryCount
@@ -141,6 +144,10 @@ const Remix: NextPage = () => {
   //   remixState,
   // });
 
+  console.log("remixState:", {
+    remixState,
+  });
+
   const onMint = async (e: React.MouseEvent) => {
     setIsMinting(true);
     e.preventDefault();
@@ -150,6 +157,11 @@ const Remix: NextPage = () => {
     }
 
     const cid = await elementToNft(el);
+    const accessoryId = accessoryData?.[0];
+
+    if (accessoryId === undefined) {
+      throw new Error("Could not get accessoryId from accessoryData");
+    }
 
     if (cid && selectedNft && selectedAccessory) {
       const previewUrl = cidToUrl(cid);
@@ -171,11 +183,11 @@ const Remix: NextPage = () => {
         tokenId: BigInt(Number(selectedNft.tokenId)),
         ercType,
         imageURL: imageUrl,
-        height: 512,
-        width: 768,
+        height: remixState.ogHeight,
+        width: remixState.ogWidth,
       };
       const accessoryMintData = {
-        accessoryId: 2n,
+        accessoryId,
         imageURL: selectedAccessory.src,
         height: remixState.height,
         width: remixState.width,
@@ -183,8 +195,7 @@ const Remix: NextPage = () => {
         y: remixState.y,
         isVisible: true,
       };
-
-      // console.log("MINT SERIALIZED:", {
+      // console.log("mintBasedDerivative:", {
       //   selectedNft,
       //   ogImageData,
       //   accessoryMintData,
@@ -240,7 +251,10 @@ const Remix: NextPage = () => {
       if (connectedAddress) {
         console.info(`Retrieving NFTs for ${connectedAddress}`);
         const data = await getNFTsForOwner(connectedAddress);
-        const nftList = data.ownedNfts.map(mapOwnedNft).filter(nft => !!nft.name);
+        const nftList = data.ownedNfts
+          .map(mapOwnedNft)
+          .filter(nft => !!nft.name && nft.address !== "0x744f1532597e943D0604e56cee2A9D68d543B2e3");
+
         if (active) {
           setOwnedNfts(nftList);
         }
@@ -259,17 +273,13 @@ const Remix: NextPage = () => {
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-3">
           <div className="mb-4">
-            <div className="hidden mb-4">
-              <input className="w-full p-2 mb-2 rounded bg-gray-800" placeholder="Search by Address" />
-              <button className="w-full bg-blue-600 p-2 rounded">Search</button>
-            </div>
             <NFTSelector nfts={ownedNfts} onSelect={handleSelectedNft} />
             <div className="mb-4">
               <select
                 id="accessory-dropdown"
                 className={cx("w-full p-2 rounded mt-4", { "cursor-not-allowed": !selectedNft })}
-                onChange={handleAccessoryChange}
                 disabled={!selectedNft}
+                onChange={handleAccessoryChange}
               >
                 <option value="">Select Accessory</option>
                 <option value="black">Top Hat - Black</option>
@@ -277,7 +287,7 @@ const Remix: NextPage = () => {
             </div>
             <div>
               <button
-                className={cx("w-full p-2 rounded", {
+                className={cx("w-full p-2 mb-4 rounded", {
                   "animate-pulse-fast": isMinting,
                   btn: !enableMinting,
                   "btn btn-primary": enableMinting,
@@ -288,13 +298,29 @@ const Remix: NextPage = () => {
               >
                 Mint
               </button>
+              <a
+                className="pt-4 link link-primary"
+                href={`https://testnets.opensea.io/${connectedAddress}`}
+                rel="noopener noreferrer"
+              >
+                View on OpenSea
+              </a>
+              {deployedContractData && (
+                <div className="relative bottom-0 bg-base-100 border-base-300 border shadow-md shadow-secondary rounded px-6 lg:px-8 space-y-1 py-4 mt-4">
+                  <div className="flex flex-col gap-1">
+                    <span className="font-bold">Based Derivatives</span>
+                    <Address address={deployedContractData.address} />
+                  </div>
+                </div>
+              )}
+
               {/* <p className="mt-2">Cost: 0.01 ETH</p> */}
             </div>
             {/* </div> */}
           </div>
         </div>
 
-        <div className="col-span-9 h-screen border-solid border-gray-400 border-2">
+        <div className="col-span-9">
           {!selectedNft && (
             <div className="flex flex-col items-center justify-center h-full">
               Start by selecting an NFT to remix from the dropdown on the left.

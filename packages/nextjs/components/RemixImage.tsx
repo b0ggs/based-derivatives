@@ -13,13 +13,14 @@ function RemixImage({ backgroundUrl, accessoryUrl }: { backgroundUrl: string; ac
     width: "200px",
     height: "200px",
   });
-
   const style = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    // border: "solid 1px #ddd",
-    // background: "#f0f0f0",
+  };
+  const handleBackgroundLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const image = e.target as HTMLImageElement;
+    setRemixState(prev => ({ ...prev, ogWidth: image.naturalWidth, ogHeight: image.naturalHeight }));
   };
 
   useEffect(() => {
@@ -29,10 +30,12 @@ function RemixImage({ backgroundUrl, accessoryUrl }: { backgroundUrl: string; ac
   return (
     <div className="relative">
       <div id="remix-container" className="w-fit">
-        <img src={backgroundUrl} alt="" />
+        <img src={backgroundUrl} alt="" onLoad={handleBackgroundLoad} />
         <Rnd
+          // className="box-content"
           style={style}
-          size={{ width: aState.width, height: aState.height }}
+          // style={{ ...style, border: borderVisible ? "dashed 4px #ddd" : "none" }}
+          size={{ width: aState.w, height: aState.h }}
           position={{ x: aState.x, y: aState.y }}
           onDragStop={(e, d) => {
             console.log("position:", { x: d.x, y: d.y });
@@ -40,6 +43,12 @@ function RemixImage({ backgroundUrl, accessoryUrl }: { backgroundUrl: string; ac
             setRemixState(prev => ({ ...prev, x: d.x, y: d.y }));
           }}
           onResizeStop={(e, direction, ref, delta, position) => {
+            console.log("resize:", {
+              delta,
+              position,
+              width: ref.style.width,
+              height: ref.style.height,
+            });
             setAState({
               w: Number(ref.style.width.replace("px", "")),
               h: Number(ref.style.height.replace("px", "")),
@@ -49,7 +58,7 @@ function RemixImage({ backgroundUrl, accessoryUrl }: { backgroundUrl: string; ac
             });
           }}
         >
-          {accessoryUrl && <img src={accessoryUrl} alt="" className="z-10 w-full h-full" />}
+          {accessoryUrl && <img src={accessoryUrl} alt="" className="z-10 w-full h-full" draggable={false} />}
         </Rnd>
       </div>
     </div>

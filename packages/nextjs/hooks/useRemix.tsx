@@ -5,6 +5,8 @@ export type RemixState = {
   y: number;
   width: number;
   height: number;
+  ogWidth: number;
+  ogHeight: number;
 };
 
 export interface RemixContextProps {
@@ -18,6 +20,8 @@ const RemixContext = createContext<RemixContextProps>({
     y: 0,
     width: 0,
     height: 0,
+    ogWidth: 0,
+    ogHeight: 0,
   },
   setRemixState: () => null,
 });
@@ -30,6 +34,8 @@ export const RemixProvider = ({ children }: { children: ReactNode }) => {
     y: 0,
     width: 0,
     height: 0,
+    ogWidth: 0,
+    ogHeight: 0,
   });
 
   return <RemixContext.Provider value={{ remixState, setRemixState }}>{children}</RemixContext.Provider>;

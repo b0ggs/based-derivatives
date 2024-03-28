@@ -30,3 +30,15 @@ p {
 .btn.btn-ghost {
   @apply shadow-none;
 }
+
+
+/* .react-draggable {
+  webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+} */
+
+.react-draggable:hover {
+  cursor: move;
+  border: 1px dashed rgb(75 85 99);
+}
+

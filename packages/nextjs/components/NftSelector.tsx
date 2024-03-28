@@ -1,11 +1,8 @@
 import React from "react";
+import cx from "classnames";
+import { useAccount } from "wagmi";
 import { mapOwnedNft } from "~~/utils/mapOwnedNft";
 
-// interface NFT {
-//   id: string;
-//   name: string;
-//   // Add other properties as needed
-// }
 type NFT = ReturnType<typeof mapOwnedNft>;
 
 interface NFTSelectorProps {
@@ -14,6 +11,7 @@ interface NFTSelectorProps {
 }
 
 const NFTSelector: React.FC<NFTSelectorProps> = ({ nfts, onSelect }) => {
+  const { address: connectedAddress } = useAccount();
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedNftId = event.target.value;
     const selectedNft = nfts.find(nft => nft.id === selectedNftId);
@@ -24,7 +22,11 @@ const NFTSelector: React.FC<NFTSelectorProps> = ({ nfts, onSelect }) => {
   };
 
   return (
-    <select className="p-2 rounded w-full" onChange={handleChange}>
+    <select
+      className={cx("p-2 rounded w-full", { "cursor-not-allowed": !connectedAddress })}
+      onChange={handleChange}
+      disabled={!connectedAddress}
+    >
       <option value="">Select an NFT</option>
       {nfts.map(nft => (
         <option key={nft.id} value={nft.id}>
