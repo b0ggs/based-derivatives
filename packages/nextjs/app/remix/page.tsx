@@ -316,13 +316,14 @@ const Remix: NextPage = () => {
               >
                 Mint
               </button>
+              {connectedAddress &&
               <a
                 className="pt-4 link link-primary"
                 href={`https://testnets.opensea.io/${connectedAddress}`}
                 rel="noopener noreferrer"
               >
                 View on OpenSea
-              </a>
+              </a>}
               {deployedContractData && (
                 <div className="relative bottom-0 bg-base-100 border-base-300 border shadow-md shadow-secondary rounded px-6 lg:px-8 space-y-1 py-4 mt-4">
                   <div className="flex flex-col gap-1">
