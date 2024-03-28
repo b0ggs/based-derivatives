@@ -40,9 +40,9 @@ const requestOptions = {
 const apiKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
 const baseURL = `${C.ALCHEMY_BASEURL}/nft/v3/${apiKey}/getNFTsForOwner`;
 
-export async function getNFTsForOwner(owner: string) {
+export async function getNFTsForOwner(owner: string, pageKey: string | undefined) {
   const pageSize = 100;
-  const fetchURL = `${baseURL}?owner=${owner}&withMetadata=true&pageSize=${pageSize}`;
+  const fetchURL = `${baseURL}?owner=${owner}&withMetadata=true&pageSize=${pageSize}&pageKey=${pageKey}`;
 
   return fetch(fetchURL, requestOptions).then(response => response.json() as Promise<AlchemyResponse>);
   // .then(metadata => {

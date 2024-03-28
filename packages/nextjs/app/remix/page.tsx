@@ -44,6 +44,12 @@ const accessoryMap: { [key: string]: AccessoryType } = {
     height: 200,
     src: "https://i.imgur.com/ln8ND8J.png",
   },
+  // sunglasses: {
+  //   name: "Sunglasses - Deal With It",
+  //   width: 930,
+  //   height: 600,
+  //   src: "sunglasses.png",
+  // },
 };
 
 type RemixNftType = ReturnType<typeof mapOwnedNft>;
@@ -250,10 +256,21 @@ const Remix: NextPage = () => {
     const fetchNFts = async () => {
       if (connectedAddress) {
         console.info(`Retrieving NFTs for ${connectedAddress}`);
-        const data = await getNFTsForOwner(connectedAddress);
-        const nftList = data.ownedNfts
-          .map(mapOwnedNft)
-          .filter(nft => !!nft.name && nft.address !== "0x744f1532597e943D0604e56cee2A9D68d543B2e3");
+        const fetchPage = async (address: string, pageKey: string | undefined) => {
+          const data = await getNFTsForOwner(address, pageKey);
+          const nftList = data.ownedNfts
+            .map(mapOwnedNft)
+            .filter(nft => !!nft.name && nft.address !== "0x744f1532597e943D0604e56cee2A9D68d543B2e3");
+          return { nftList, pageKey: data.pageKey };
+        };
+
+        let nftList: RemixNftType[] = [];
+        let currentPageKey: string | undefined | null = undefined;
+        do {
+          const rv = await fetchPage(connectedAddress, currentPageKey);
+          nftList = nftList.concat(rv.nftList);
+          currentPageKey = rv.pageKey;
+        } while (currentPageKey);
 
         if (active) {
           setOwnedNfts(nftList);
@@ -283,6 +300,7 @@ const Remix: NextPage = () => {
               >
                 <option value="">Select Accessory</option>
                 <option value="black">Top Hat - Black</option>
+                {/* <option value="sunglasses">Sunglasses - Deal With It</option> */}
               </select>
             </div>
             <div>
@@ -308,7 +326,7 @@ const Remix: NextPage = () => {
               {deployedContractData && (
                 <div className="relative bottom-0 bg-base-100 border-base-300 border shadow-md shadow-secondary rounded px-6 lg:px-8 space-y-1 py-4 mt-4">
                   <div className="flex flex-col gap-1">
-                    <span className="font-bold">Based Derivatives</span>
+                    <span className="font-bold">Base →D[erivatives]</span>
                     <Address address={deployedContractData.address} />
                   </div>
                 </div>
