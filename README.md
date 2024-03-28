@@ -22,7 +22,7 @@ Base →D\[erivatives\] is an art project on Base, that explores the concepts of
 
 - **Metadata Generation**: The contract uses the `SVGBuilder` library to generate the metadata and SVG images for the derivative NFTs. This allows for dynamic and customizable metadata that reflects the unique combinations of accessories used in each derivative.
 
-- **Payment Handling**: The contract supports payments in any ERC-20 token and includes functions to calculate the total fee for accessories and handle the payment distribution. 
+- **Payment Handling**: The contract supports payments in any ERC-20 token and includes functions to calculate the total fee for accessories and handle the payment distribution.
 
 - **Customization**: The contract includes functions to toggle the visibility of accessories and update the preview image URL, allowing users to customize their derivatives even after minting. This gives users the freedom to adjust their creations as desired.
 
@@ -40,7 +40,7 @@ Base →D\[erivatives\] is an art project on Base, that explores the concepts of
 
 ## Getting Started
 
-To get started with Base →D\[erivatives\], simply visit our dApp at [base-derivatives.vercel.app](https://base-derivatives.vercel.app). The project is currently deployed on the Base Sepolia testnet, and the smart contract address is `0x1234567890abcdef`.
+To get started with Base →D\[erivatives\], simply visit our dApp at [base-derivatives.vercel.app](https://base-derivatives.vercel.app). The project is currently deployed on the Base Sepolia testnet, and the smart contract address is `0x79F6B9212cA0ef4Cfc1401Db052af8b1603Bf677` (sepolia-base).
 
 Please note that you will need a wallet connected to the Base Sepolia testnet to interact with the dApp. You will also need an NFT on Base Sepolia to interact.
 
